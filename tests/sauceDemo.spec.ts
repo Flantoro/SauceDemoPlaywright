@@ -67,6 +67,6 @@ test("Attempt for locked user login should not be successful (failed)", async ({
   await test.step("Login as a locked user", async () => {
     await login.goto();
     await login.lockedUserLogin();
-    expect(page.url()).not.toEqual(Credentials.inventoryUrl);
+    expect(page.url()).toEqual(Credentials.inventoryUrl);
   });
 });
