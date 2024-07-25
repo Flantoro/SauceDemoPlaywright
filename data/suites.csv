@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Thu Jul 25 11:59:04 GMT 2024","Thu Jul 25 11:59:10 GMT 2024","5584","chromium","sauceDemo.spec.ts","","","","Purchase path",""
+"passed","Thu Jul 25 11:59:12 GMT 2024","Thu Jul 25 11:59:14 GMT 2024","1780","chromium","sauceDemo.spec.ts","","","","Attempt for locked user login should not be successful (failed)",""
+"passed","Thu Jul 25 11:59:10 GMT 2024","Thu Jul 25 11:59:12 GMT 2024","1769","chromium","sauceDemo.spec.ts","","","","Attempt for locked user login should not be successful",""
