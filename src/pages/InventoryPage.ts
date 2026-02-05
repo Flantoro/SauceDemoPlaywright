@@ -1,8 +1,8 @@
 import { expect, type Locator, type Page } from "@playwright/test";
-import Credentials from "../helpers/Credentials.json";
+import data from "../data/data";
+import { CommonPage } from "./CommonPage";
 
-export class inventoryPage {
-  readonly page: Page;
+export class InventoryPage extends CommonPage {
   readonly addBackpack: Locator;
   readonly addBikeLight: Locator;
   readonly addTshirt: Locator;
@@ -12,6 +12,7 @@ export class inventoryPage {
   readonly cartButton: Locator;
 
   constructor(page: Page) {
+    super(page);
     this.addBackpack = page.locator(
       "[data-test='add-to-cart-sauce-labs-backpack']"
     );
@@ -33,8 +34,8 @@ export class inventoryPage {
     this.cartButton = page.locator("[class='shopping_cart_link']");
   }
 
-  async checkIfThePageIsOpened(page) {
-    expect(page.url()).toBe(Credentials.inventoryUrl);
+  async checkPageIsOpened(page : Page) {
+    expect(page.url()).toContain(data.inventoryUrl);
     expect(page.locator("[class='title']")).toHaveText("Products");
   }
 

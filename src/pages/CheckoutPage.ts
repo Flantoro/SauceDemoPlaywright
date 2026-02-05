@@ -1,8 +1,8 @@
 import { expect, type Locator, type Page } from "@playwright/test";
-import Credentials from "../helpers/Credentials.json";
+import data from "../data/data";
+import { CommonPage } from "./CommonPage";
 
-export class checkoutPage {
-  readonly page: Page;
+export class CheckoutPage extends CommonPage {
   readonly firstNameInputField: Locator;
   readonly lastNameInputField: Locator;
   readonly zipCodeInputField: Locator;
@@ -11,6 +11,7 @@ export class checkoutPage {
   readonly successfulMessage: Locator;
 
   constructor(page: Page) {
+    super(page);
     this.firstNameInputField = page.locator("[data-test='firstName']");
     this.lastNameInputField = page.locator("[data-test='lastName']");
     this.zipCodeInputField = page.locator("[data-test='postalCode']");
@@ -19,22 +20,22 @@ export class checkoutPage {
     this.successfulMessage = page.locator("[class='complete-header']");
   }
 
-  async fillCheckputFormFileds(firstName, lastName, zipCode) {
+  async fillCheckoutForm(firstName: string, lastName: string, zipCode: string) {
     await this.firstNameInputField.fill(firstName);
     await this.lastNameInputField.fill(lastName);
     await this.zipCodeInputField.fill(zipCode);
   }
 
-  async clickOnContinueButton() {
+  async clickContinueButton() {
     await this.continueButton.click();
   }
 
-  async clickOnTheFinishButton() {
+  async clickFinishButton() {
     await this.finishButton.click();
   }
 
-  async checkIfOrderCompleted(page) {
-    await expect(page.url()).toBe(Credentials.checkoutUrl);
+  async checkOrderCompleted(page: Page) {
+    await expect(page.url()).toContain(data.checkoutUrl);
     await expect(this.successfulMessage).toBeVisible();
   }
 }

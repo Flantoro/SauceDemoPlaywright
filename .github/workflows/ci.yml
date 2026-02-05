@@ -20,7 +20,11 @@ jobs:
         run: npx playwright install
 
       - name: Run tests
-        run: npx playwright test
+        env:
+          STANDART_USER: ${{ secrets.STANDART_USER }}
+          LOCKED_USER: ${{ secrets.LOCKED_USER }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+        run: npm run test
         continue-on-error: true
 
       - name: Generate Allure Report

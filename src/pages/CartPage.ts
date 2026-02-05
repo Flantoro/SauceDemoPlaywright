@@ -1,13 +1,14 @@
 import { expect, type Locator, type Page } from "@playwright/test";
-import Credentials from "../helpers/Credentials.json";
+import data from "../data/data";
+import { CommonPage } from "./CommonPage";
 
-export class cartPage {
-  readonly page: Page;
+export class CartPage extends CommonPage {
   readonly checkoutButton: Locator;
   readonly continueShoppingButton: Locator;
   readonly yourCartTitle: Locator;
 
   constructor(page: Page) {
+    super(page);
     this.checkoutButton = page.locator("[data-test='checkout']");
     this.continueShoppingButton = page.locator(
       "[data-test='continue-shopping']"
@@ -15,16 +16,16 @@ export class cartPage {
     this.yourCartTitle = page.locator("[class='title']");
   }
 
-  async checkIfCartIsOpened(page) {
-    expect(page.url()).toBe(Credentials.cartUrl);
+  async checkCartIsOpened(page: Page) {
+    expect(page.url()).toContain(data.cartUrl);
     expect(this.yourCartTitle).toHaveText("Your Cart");
   }
 
-  async clickOnTheCheckoutButton() {
+  async clickCheckoutButton() {
     await this.checkoutButton.click();
   }
 
-  async clickOnTheContinueShopButton() {
+  async clickContinueShopButton() {
     await this.continueShoppingButton.click();
   }
 }
